@@ -30,7 +30,7 @@ def trans_words(soup):
     print(f'{to_lang} Translations:')
     words_results = soup.find_all('a', attrs={'class': 'translation'})
     translated_words = []
-    for tag in words_results[1:2]:
+    for tag in words_results[1:5]:
         translated_words.append(tag.text.strip())
     if translate_to == 'all':
         t.write(f'\n{to_lang} Translations:\n')
@@ -46,7 +46,7 @@ def sentences(soup):
     sentences_results_left = soup.select('.example > .src')
     sentences_results_right = soup.select('.example > .trg')
     translated_sentences = []
-    for tag_left, tag_right in zip(sentences_results_left[:1], sentences_results_right[:1]):
+    for tag_left, tag_right in zip(sentences_results_left[:5], sentences_results_right[:5]):
         translated_sentences.append(tag_left.text.replace('\n', '').replace('  ', ''))
         translated_sentences.append(tag_right.text.replace('\n', '').replace('  ', ''))
     if translate_to == 'all':
